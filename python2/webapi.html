@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Monedas</title>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $("#solicitar").click(function(){
+
+                $.get("https://mindicador.cl/api",
+                    function(data){
+                        
+                        $.each(data,function(i,item){
+                            $("#monedas").append("<tr><td>"+item.codigo+"</td><td>"+item.nombre +
+                            "</td><td>"+ item.valor+ "</td><td>" + item.fecha + "</td></tr>");
+                            
+
+                        });
+
+                    });
+            });
+        })
+    </script>
+    <style>
+        #caja{
+            margin-left:40px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Consumo de API Tipos de Monedas </h1>
+    <hr>
+    <div id="caja">
+        <button type="button" id="solicitar">Solicitar Tipos de Monedas</button>
+    </div>
+    <br><br>
+
+    <table class="table" id="monedas">
+        <thead>
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+    </table>
+    
+</body>
+</html>
